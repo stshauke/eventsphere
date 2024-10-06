@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <!-- Section: Design Block -->
+    <section class="">
+        <!-- Jumbotron -->
+        
+        <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+          <div class=">text-center text-lg-center"> <h5 style="color:black">Veuillez vous s'inscrire</h5></div>
+            <div class="container ">
+                <div class="row gx-lg-5 align-items-center">
+  <div class="col-lg-6">
+    <img src="/assets/img/evenement-professionnel.jpg" alt="" class="img-fluid" style="max-width: 50%; height: auto;">
+</div>
+
+
+    <div class="col-lg-6 mb-0 mb-lg-0">
+                        <div class="card h-100">
+                            <div class="card-body  px-md-5">
+                                {{ form_start(registrationForm) }}
+                                <!-- name input -->
+                                <div class="form-outline mb-4">
+                                    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    {{ form_row(registrationForm.plainPassword, {
+                                        label: 'Mot de passe',
+                                        'attr': {'class': 'form-control'}
+                                    }) }}
+                                </div>
+
+                                <!-- Agree Terms input -->
+                                <div class="form-outline mb-4">
+                                    {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">
+                                    S'inscrire
+                                </button>
+
+                                {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
+    <!-- Section: Design Block -->
+</div>
+{% endblock %}

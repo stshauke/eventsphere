@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}evenement index{% endblock %}
+ 
+{% block body %}
+     <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            
+        </div>
+        <!-- Spinner End -->
+
+
+
+
+    <div class="container">
+    
+        <h2 class="text-center mt-5 mb-1"> Créer un nouveau événement </h2>
+	 
+        <div class="card">
+            <div class="card-header">
+                <div class="text-center">
+                </div>
+            </div>
+            <div class="card-body">                
+                {{ form_start(form) }}
+                <div class="row">
+					<div class="col-lg-12 col-md-12">
+
+						{% for field in form %}
+							 {% if field.vars.name != '_token' %}
+		 {% if field.vars.name != 'agree_terms' %}
+            {% if field.vars.name == 'status' or field.vars.name == 'roles' or field.vars.name == 'dateCreation' %}
+                {% do form[field.vars.name].setRendered() %}
+            {% else %}
+							<div class="row">
+								<div class="col-md-3 mb-3 label-column">
+									{{ form_label(field) }}
+								</div>
+								<div class="col-md-9 mb-3">
+										{% if field.vars.block_prefixes[1] == 'text' %}
+											{{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+										{% else %}
+											{{ form_widget(field) }}
+										{% endif %}
+										<span class="text-danger">{{ form_errors(field) }}</span>
+										{# Afficher les erreurs spécifiques à ce champ #}
+								</div>
+							</div>
+							{% endif %}
+                            {% endif %}
+                            {% endif %}
+						{% endfor %}
+					</div>
+					
+                </div>
+                <div class="card-footer">
+                <div class="text-center"> 
+                    <a href="{{ path('app_evenement_index') }}" class="btn btn-outline-secondary me-2">Retour à la liste</a>
+                    <button class="btn btn-outline-success me-2">Enregistrer</button>
+                </div>
+				 {{ form_end(form) }}
+            </div>
+            </div>
+           
+        </div>
+    </div>
+    </div>
+
+      
+
+    </section><!-- /Hero Section -->
+{% endblock %}

@@ -1,5 +1,29 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+# config/routes.yaml
+
+app_login:
+    path: /
+    controller: App\Controller\SecurityController::login
+app_home:
+    path: /home
+    controller: App\Controller\HomeController::home    
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+app_evenement_index:
+    path: /evenement/index
+    controller: App\Controller\EvenementController::index
+app_evenement_new:
+    path: /evenement/new
+    controller: App\Controller\EvenementController::new
+app_evenement_edit:
+    path: /evenement/edit
+    controller: App\Controller\EvenementController::edit
+app_evenement_delete:
+    path: /evenement/delete
+    controller: App\Controller\EvenementController::delete
+app_evenement_show:
+    path: /evenement/show
+    controller: App\Controller\EvenementController::show
