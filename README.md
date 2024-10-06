@@ -6,7 +6,7 @@
        Et positionnez-vous dans ce dossier.  
 
 2 . Cloner ce repository avec la commande : 
-    git clone https://github.com/stshauke/trt-conseil-tshauke-symfony.git 
+    git clone https://github.com/stshauke/eventsphere.git 
 
 
 3 . Télécharger et installer WampServer
