@@ -20,6 +20,7 @@ final class EvenementController extends AbstractController
     public function index(Request $request,EvenementRepository $evenementRepository, PaginatorInterface $paginator): Response
     {
        
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
     // Utilisez le repository pour récupérer les modules
     $queryBuilder = $evenementRepository->createQueryBuilder('e')
@@ -29,7 +30,7 @@ final class EvenementController extends AbstractController
     $pagination = $paginator->paginate(
         $queryBuilder, // QueryBuilder à paginer
         $request->query->getInt('page', 1), // Numéro de la page à afficher
-        1 // Nombre d'éléments par page
+        2 // Nombre d'éléments par page
     );
 
     // Transférez la pagination à votre vue Twig
@@ -53,6 +54,8 @@ final class EvenementController extends AbstractController
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
@@ -73,6 +76,8 @@ final class EvenementController extends AbstractController
     #[Route('/{id}', name: 'app_evenement_show', methods: ['GET'])]
     public function show(Evenement $evenement): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
         ]);
@@ -81,6 +86,8 @@ final class EvenementController extends AbstractController
     #[Route('/{id}/edit', name: 'app_evenement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Evenement $evenement, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
@@ -99,6 +106,8 @@ final class EvenementController extends AbstractController
     #[Route('/{id}', name: 'app_evenement_delete', methods: ['POST'])]
     public function delete(Request $request, Evenement $evenement, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($evenement);
             $entityManager->flush();
