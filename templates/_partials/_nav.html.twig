@@ -10,8 +10,17 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ path('app_home') }}" class="active">Accueil<br></a></li>
-         
+
+
+
+
+          <li><a href="{{ path('app_home') }}" class="{% if app.request.attributes.get('_route') == 'app_home'%}active{% endif %}">Accueil<br></a></li>
+           <li><a href="{{ path('app_evenement_index') }}" class="{% if app.request.attributes.get('_route') == 'app_evenement_index'
+           or app.request.attributes.get('_route') == 'app_evenement_edit'
+           or app.request.attributes.get('_route') == 'app_evenement_new'
+           or app.request.attributes.get('_route') == 'app_evenement_show'
+           or app.request.attributes.get('_route') == 'app_evenement_delete'
+           %}active{% endif %}">Evenement<br></a></li>
           <li><a href="#venue">Lieu</a></li>
           
         
