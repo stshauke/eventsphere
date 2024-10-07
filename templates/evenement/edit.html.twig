@@ -1,13 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Evenement{% endblock %}
+{% block title %}evenement
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Evenement</h1>
+	<div class="container">
+	 <h3 class="text-center mt-5 mb-1">Modification des informations du evenement numéro: 
+	 <span class="text-success">{{ evenement.id }}</span></h3>
+		<div class="card">
+			<div class="card-header">
+				<div class="text-center">
+					<h3 class="text-primary">
+						
+						
+					</h3>
+				</div>
+			</div>
+			<div class="card-body">
+				{{ form_start(form) }}
+				<div class="row">
+					{% for field in form %}
+						{% if field.vars.name != '_token' %}
+							<div class="col-md-3 mb-3 label-column">
+								{{ form_label(field) }}
+							</div>
+							<div class="col-md-6 mb-3 ">
+								{% if field.vars.block_prefixes[1] == 'text' %}
+									{{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+								{% else %}
+									{{ form_widget(field) }}
+								{% endif %}
+								<span class="text-danger">{{ form_errors(field) }}</span>
+								{# Afficher les erreurs spécifiques à ce champ #}
+							</div>
+							<div class="col-md-3 mb-3 "></div>
+						{% endif %}
+					{% endfor %}
+				</div>
 
-    {{ include('evenement/_form.html.twig', {'button_label': 'Update'}) }}
+			</div>
+			<div class="card-footer">
+				<div class="text-center">
 
-    <a href="{{ path('app_evenement_index') }}">back to list</a>
-
-    {{ include('evenement/_delete_form.html.twig') }}
+					<a href="{{ path('app_evenement_index') }}" class="btn btn-outline-secondary me-2">Retour à la liste</a>
+					<button class="btn btn-outline-success me-2">
+						{{ button_label|default('Mettre à jour') }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
 {% endblock %}

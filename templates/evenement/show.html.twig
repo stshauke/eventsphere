@@ -3,21 +3,34 @@
 {% block title %}Evenement{% endblock %}
 
 {% block body %}
-    <h1>Evenement</h1>
 
+    <h1>Evenement</h1>
+<div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            
+        </div>
+        <!-- Spinner End -->
+
+
+<div class="container">
+        <h2 class="text-center mt-5 mb-3">Liste des evenements</h2>
+        <div class="card">
+           
+            <div class="card-body">
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ evenement.id }}</td>
+               <td>{{ evenement.id }}</td>
             </tr>
             <tr>
                 <th>Nom_evenement</th>
-                <td>{{ evenement.nomEvenement }}</td>
+                 <td>{{ evenement.nomEvenement}}</td>
             </tr>
             <tr>
                 <th>Description_evenement</th>
-                <td>{{ evenement.descriptionEvenement }}</td>
+                <td>{{ evenement.descriptionEvenement}}</td>
             </tr>
             <tr>
                 <th>Date_evenement</th>
@@ -34,9 +47,26 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_evenement_index') }}">back to list</a>
+            </div>
+       
+       
+<div class="card-footer">
+              <div class="text-center"> 
+                    <a href="{{ path('app_evenement_index') }}" class="btn btn-secondary me-2">Retour à la liste</a>
+                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('app_evenement_delete', {'id': evenement.id}) }}" class="btn btn-danger">Supprimer</a>
+                </div>
+             </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
 
-    {{ include('evenement/_delete_form.html.twig') }}
+
+  </div>
+  </div>
+
+      
+
+    </section><!-- /Hero Section -->
 {% endblock %}
+
