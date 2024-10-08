@@ -6,10 +6,10 @@
        Et positionnez-vous dans ce dossier.  
 
 2 . Cloner ce repository avec la commande : 
-    git clone https://github.com/stshauke/eventsphere.git 
-    composer install
-    npm install
-    npm run dev
+    git clone https://github.com/stshauke/eventsphere.git ;
+    composer install;
+    npm install;
+    npm run dev;
 
 3. Télécharger et installer WampServer
 
