@@ -11,22 +11,22 @@ class Evenement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(name: "nom_evenement", length: 255, nullable: true)]
     private ?string $nomEvenement = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $descriptionEvenement  = null;
+    #[ORM\Column(name: "description_evenement", length: 255, nullable: true)]
+    private ?string $descriptionEvenement = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateEvenement  = null;
+    #[ORM\Column(name: "date_evenement", type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateEvenement = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $lieuEvenement  = null;
+    #[ORM\Column(name: "lieu_evenement", length: 255, nullable: true)]
+    private ?string $lieuEvenement = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(name: "nb_max_participants", nullable: true)]
     private ?int $nbMaxParticipants = null;
 
     public function getId(): ?int

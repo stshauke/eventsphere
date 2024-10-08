@@ -21,34 +21,38 @@ final class EvenementController extends AbstractController
     {
        
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // Récupérer le terme de recherche depuis la requête
+        $searchTerm = $request->query->get('search');
+        // Récupérez la page actuelle à partir de la requête
+        $currentPage = $request->query->getInt('page', 1);
 
+        // Nombre d'éléments par page
+        $itemsPerPage = 2;
+    // Créez une requête Doctrine pour récupérer les annonces (alias: an)
     // Utilisez le repository pour récupérer les modules
     $queryBuilder = $evenementRepository->createQueryBuilder('e')
         ->orderBy('e.id', 'ASC');
-
-    // Paginez les résultats
-    $pagination = $paginator->paginate(
-        $queryBuilder, // QueryBuilder à paginer
-        $request->query->getInt('page', 1), // Numéro de la page à afficher
-        2 // Nombre d'éléments par page
-    );
-
-    // Transférez la pagination à votre vue Twig
-    return $this->render('evenement/index.html.twig', [
-        'pagination' => $pagination,
-    ]);
-
-
-       
-        // return $this->render('evenement/index.html.twig', [
-        //     'evenements' => $evenementRepository->findAll(),
-        // ]);
-
-
-
-
-
+// Ajoutez une condition de recherche si un terme de recherche est spécifié
+if ($searchTerm) {
+    $queryBuilder
+        ->andWhere('e.nomEvenement LIKE :searchTerm OR e.descriptionEvenement LIKE :searchTerm OR e.lieuEvenement LIKE :searchTerm OR e.dateEvenement LIKE :searchTerm OR e.nbMaxParticipants LIKE :searchTerm')
+        ->setParameter('searchTerm', '%' . $searchTerm . '%');
 }
+     // Paginez les résultats
+     $pagination = $paginator->paginate(
+        $queryBuilder,
+        $currentPage,
+        $itemsPerPage
+    );
+    // Transférez la pagination à votre vue Twig
+        
+        
+        
+        
+        return $this->render('evenement/index.html.twig', [
+            'pagination' => $pagination,
+        ]);
+    }
 
 
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
@@ -91,6 +95,8 @@ final class EvenementController extends AbstractController
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
+         // Debugging
+    // dump($evenement); // Vérifiez que l'entité contient les données correctes
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 

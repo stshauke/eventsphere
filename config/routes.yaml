@@ -15,15 +15,19 @@ app_logout:
 app_evenement_index:
     path: /evenement/index
     controller: App\Controller\EvenementController::index
+
 app_evenement_new:
     path: /evenement/new
     controller: App\Controller\EvenementController::new
+
 app_evenement_edit:
-    path: /evenement/edit
+    path: /evenement/{id}/edit  # Inclure {id} dans le chemin
     controller: App\Controller\EvenementController::edit
+
 app_evenement_delete:
-    path: /evenement/delete
+    path: /evenement/{id}/delete  # Inclure {id} dans le chemin
     controller: App\Controller\EvenementController::delete
+
 app_evenement_show:
-    path: /evenement/show
+    path: /evenement/{id}  # Inclure {id} dans le chemin
     controller: App\Controller\EvenementController::show
