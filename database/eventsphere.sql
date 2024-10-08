@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 05 oct. 2024 à 19:17
+-- Généré le : mar. 08 oct. 2024 à 13:40
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -54,21 +54,23 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom_evenement` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nom_evenement` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description_evenement` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_evenement` datetime DEFAULT NULL,
   `lieu_evenement` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nb_max_participants` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
 INSERT INTO `evenement` (`id`, `nom_evenement`, `description_evenement`, `date_evenement`, `lieu_evenement`, `nb_max_participants`) VALUES
-(1, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', ',:;,;:,:;,iiiii', 5),
-(2, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', ',:;,;:,:;,iiiii', 5);
+(1, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', 'Paris', 5),
+(2, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', 'USA', 5),
+(3, 'Marketting', 'Évènement crée par notre école', '2024-10-25 19:54:00', 'France', 100),
+(4, 'Conference de Berlin', 'Conference de BerlinConference de Berlin', '2024-10-03 14:46:00', 'Montreuil', 20);
 
 -- --------------------------------------------------------
 
