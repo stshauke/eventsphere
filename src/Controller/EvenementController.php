@@ -27,7 +27,7 @@ final class EvenementController extends AbstractController
         $currentPage = $request->query->getInt('page', 1);
 
         // Nombre d'éléments par page
-        $itemsPerPage = 2;
+        $itemsPerPage = 4;
     // Créez une requête Doctrine pour récupérer les annonces (alias: an)
     // Utilisez le repository pour récupérer les modules
     $queryBuilder = $evenementRepository->createQueryBuilder('e')
