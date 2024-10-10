@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 #[Route('/evenement')]
 final class EvenementController extends AbstractController
@@ -60,6 +61,12 @@ if ($searchTerm) {
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $accessDeniedRoute = $this->generateUrl('app_home');
+            return new RedirectResponse($accessDeniedRoute);
+        }
+
+
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
@@ -91,7 +98,10 @@ if ($searchTerm) {
     public function edit(Request $request, Evenement $evenement, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $accessDeniedRoute = $this->generateUrl('app_home');
+            return new RedirectResponse($accessDeniedRoute);
+        }
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
@@ -114,6 +124,10 @@ if ($searchTerm) {
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $accessDeniedRoute = $this->generateUrl('app_home');
+            return new RedirectResponse($accessDeniedRoute);
+        }
         if ($this->isCsrfTokenValid('delete'.$evenement->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($evenement);
             $entityManager->flush();

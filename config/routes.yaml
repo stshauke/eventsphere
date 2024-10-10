@@ -31,3 +31,30 @@ app_evenement_delete:
 app_evenement_show:
     path: /evenement/{id}  # Inclure {id} dans le chemin
     controller: App\Controller\EvenementController::show
+app_users_list:
+    path: /liste
+    controller: App\Controller\UserController::list
+# Liste des inscriptions pour un événement (ou pour tous les événements)
+app_inscription_index:
+    path: /inscription
+    controller: App\Controller\InscriptionController::index
+
+# Créer une nouvelle inscription
+app_inscription_new:
+    path: /inscription/new
+    controller: App\Controller\InscriptionController::new
+
+# Afficher une inscription spécifique
+app_inscription_show:
+    path: /inscription/{id}  # Inclure {id} dans le chemin
+    controller: App\Controller\InscriptionController::show
+
+# Modifier une inscription existante
+app_inscription_edit:
+    path: /inscription/{id}/edit  # Inclure {id} dans le chemin
+    controller: App\Controller\InscriptionController::edit
+
+# Supprimer une inscription
+app_inscription_delete:
+    path: /inscription/{id}/delete  # Inclure {id} dans le chemin
+    controller: App\Controller\InscriptionController::delete

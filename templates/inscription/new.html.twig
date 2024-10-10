@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Inscription{% endblock %}
+
+{% block body %}
+<section id="hero" class="hero section dark-background">
+    <div class="container">
+        <h2 class="text-center mt-5 mb-1">Créer une nouvelle inscription</h2>
+        <div class="card">
+            <div class="card-header">
+                <div class="text-center">
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        {% for field in form %}
+                            {% if field.vars.name != '_token' %}
+                                <div class="row">
+                                    <div class="col-md-3 mb-3 label-column">
+                                        {% if field.vars.name == 'user' %}
+                                            <label for="{{ field.vars.id }}" class="form-label">Utilisateur</label>
+                                        {% elseif field.vars.name == 'evenement' %}
+                                            <label for="{{ field.vars.id }}" class="form-label">Évènement</label>
+                                        {% else %}
+                                            {{ form_label(field) }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-9 mb-3">
+                                        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(field) }}</span>
+                                        
+                                        {# Vérifier et afficher le nom de l'utilisateur s'il est défini et non nul #}
+                                        {% if field.vars.name == 'user' and field.vars.value is not null %}
+                                            {% set user = form.vars.data.user %}
+                                            {% if user is not null %}
+                                                <span>{{ user.getFullName() }}</span>
+                                            {% endif %}
+                                        {% elseif field.vars.name == 'evenement' and field.vars.value is not null %}
+                                            {% set evenement = form.vars.data.evenement %}
+                                            {% if evenement is not null %}
+                                                <span>{{ evenement.getNomEvenement() }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        {# Afficher un message si aucun utilisateur ou événement n'est sélectionné #}
+                                        {% if field.vars.name == 'user' and (field.vars.value is null or user is null) %}
+                                            <span>Aucun utilisateur sélectionné</span>
+                                        {% elseif field.vars.name == 'evenement' and (field.vars.value is null or evenement is null) %}
+                                            <span>Aucun événement sélectionné</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="text-center">
+                        <a href="{{ path('app_inscription_index') }}" class="btn btn-outline-secondary me-2">Retour à la liste</a>
+                        <button class="btn btn-outline-success me-2">Enregistrer</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /Hero Section -->
+{% endblock %}

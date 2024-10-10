@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'Inscription{% endblock %}
+
+{% block body %}
+<section id="hero" class="hero section dark-background">
+    <div class="container">
+        <h2 class="text-center mt-5 mb-1">Détails de l'inscription</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="text-center">
+                    <h3 class="text-primary">Inscription ID: <span class="text-success">{{ inscription.id }}</span></h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ inscription.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date d'inscription</th>
+                            <td>{{ inscription.dateInscription ? inscription.dateInscription|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>ID de l'utilisateur</th>
+                            <td>{{ inscription.user.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom de l'utilisateur</th>
+                            <td>{{ inscription.user.fullName }}</td> {# Assurez-vous que fullName existe dans votre entité User #}
+                        </tr>
+                        <tr>
+                            <th>ID de l'événement</th>
+                            <td>{{ inscription.evenement.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom de l'événement</th>
+                            <td>{{ inscription.evenement.nomEvenement }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="text-center">
+                    <a href="{{ path('app_inscription_index') }}" class="btn btn-secondary me-2">Retour à la liste</a>
+                    <a href="{{ path('app_inscription_edit', {'id': inscription.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('app_inscription_delete', {'id': inscription.id}) }}"  class="btn btn-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

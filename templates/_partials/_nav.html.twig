@@ -25,6 +25,12 @@
            or app.request.attributes.get('_route') == 'app_evenement_delete'
            %}active{% endif %}">Evenement<br></a></li>
         {% endif %}
+        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+    <li><a href="{{ path('app_users_list') }}">Liste des inscrits</a></li>
+{% endif %}
+ {% if app.user and 'ROLE_ADMIN' not in app.user.roles %}
+    <li><a href="{{ path('app_inscription_new') }}">S'inscrire dans un évènement</a></li>
+{% endif %}
 
           <li><a href="#venue">Lieu</a></li>
           

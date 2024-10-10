@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -18,6 +20,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'user', orphanRemoval: true)]
+    private $inscriptions;
+    
+   
+   
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -102,6 +109,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $nom = null;
 
+    /**
+     * @var Collection<int, Inscription>
+     */
+    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'user')]
+    private Collection $id_user;
+
+    public function __construct()
+    {
+        $this->id_user = new ArrayCollection();
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -121,5 +139,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getIdUser(): Collection
+    {
+        return $this->id_user;
+    }
+
+    public function addIdUser(Inscription $idUser): static
+    {
+        if (!$this->id_user->contains($idUser)) {
+            $this->id_user->add($idUser);
+            $idUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdUser(Inscription $idUser): static
+    {
+        if ($this->id_user->removeElement($idUser)) {
+            // set the owning side to null (unless already changed)
+            if ($idUser->getUser() === $this) {
+                $idUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+    // Ajoutez la méthode pour obtenir le nom complet
+    public function getFullName(): string
+    {
+        return $this->nom; // Si vous n'avez qu'un seul champ pour le nom
     }
 }

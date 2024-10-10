@@ -14,6 +14,9 @@ class Evenement
     #[ORM\Column(name: "id")]
     private ?int $id = null;
 
+    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'evenement', orphanRemoval: true)]
+    private $inscriptions;
+
     #[ORM\Column(name: "nom_evenement", length: 255, nullable: true)]
     private ?string $nomEvenement = null;
 
@@ -36,49 +39,45 @@ class Evenement
 
     public function getNomEvenement(): ?string
     {
-        return $this->nomEvenement ;
+        return $this->nomEvenement;
     }
 
-    public function setNomEvenement(?string $nomEvenement ): static
+    public function setNomEvenement(?string $nomEvenement): static
     {
-        $this->nomEvenement = $nomEvenement ;
-
+        $this->nomEvenement = $nomEvenement;
         return $this;
     }
 
     public function getDescriptionEvenement(): ?string
     {
-        return $this->descriptionEvenement ;
+        return $this->descriptionEvenement;
     }
 
-    public function setDescriptionEvenement(?string $descriptionEvenement ): static
+    public function setDescriptionEvenement(?string $descriptionEvenement): static
     {
-        $this->descriptionEvenement  = $descriptionEvenement ;
-
+        $this->descriptionEvenement = $descriptionEvenement;
         return $this;
     }
 
     public function getDateEvenement(): ?\DateTimeInterface
     {
-        return $this->dateEvenement ;
+        return $this->dateEvenement;
     }
 
-    public function setDateEvenement(?\DateTimeInterface $dateEvenement ): static
+    public function setDateEvenement(?\DateTimeInterface $dateEvenement): static
     {
-        $this->dateEvenement  = $dateEvenement ;
-
+        $this->dateEvenement = $dateEvenement;
         return $this;
     }
 
     public function getLieuEvenement(): ?string
     {
-        return $this->lieuEvenement ;
+        return $this->lieuEvenement;
     }
 
-    public function setLieuEvenement(?string $lieuEvenement ): static
+    public function setLieuEvenement(?string $lieuEvenement): static
     {
-        $this->lieuEvenement  = $lieuEvenement ;
-
+        $this->lieuEvenement = $lieuEvenement;
         return $this;
     }
 
@@ -90,7 +89,35 @@ class Evenement
     public function setNbMaxParticipants(?int $nbMaxParticipants): static
     {
         $this->nbMaxParticipants = $nbMaxParticipants;
+        return $this;
+    }
+
+    // Ajoutez des méthodes pour gérer les inscriptions si nécessaire
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setEvenement($this);
+        }
 
         return $this;
     }
+
+    public function removeInscription(Inscription $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // si l'inscription était associée à cet événement, on la dissocie
+            if ($inscription->getEvenement() === $this) {
+                $inscription->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+    
 }
