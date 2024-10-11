@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 08 oct. 2024 à 13:40
+-- Généré le : ven. 11 oct. 2024 à 11:39
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -60,17 +60,44 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `lieu_evenement` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nb_max_participants` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
 INSERT INTO `evenement` (`id`, `nom_evenement`, `description_evenement`, `date_evenement`, `lieu_evenement`, `nb_max_participants`) VALUES
-(1, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', 'Paris', 5),
-(2, 'kjkljkj', 'jopipoiopipo', '2024-10-02 23:16:00', 'USA', 5),
+(1, 'Robotique', 'conférence sur la robotique', '2024-10-02 23:16:00', 'Paris', 5),
+(2, 'Coloc', 'évènement sur le multiculturel', '2024-10-02 23:16:00', 'Londres', 9),
 (3, 'Marketting', 'Évènement crée par notre école', '2024-10-25 19:54:00', 'France', 100),
-(4, 'Conference de Berlin', 'Conference de BerlinConference de Berlin', '2024-10-03 14:46:00', 'Montreuil', 20);
+(7, 'Exemple 1', 'Exemple 1Exemple 1', '2024-10-24 21:05:00', 'Lille', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `inscription`
+--
+
+DROP TABLE IF EXISTS `inscription`;
+CREATE TABLE IF NOT EXISTS `inscription` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `evenement_id` int NOT NULL,
+  `date_inscription` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5E90F6D6A76ED395` (`user_id`),
+  KEY `IDX_5E90F6D6FD02F13` (`evenement_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `inscription`
+--
+
+INSERT INTO `inscription` (`id`, `user_id`, `evenement_id`, `date_inscription`) VALUES
+(1, 2, 3, '2024-10-10 22:01:00'),
+(2, 3, 2, '2024-10-25 11:12:00'),
+(3, 4, 7, '2024-10-31 23:49:00'),
+(4, 1, 1, '2024-10-18 21:03:00');
 
 -- --------------------------------------------------------
 
@@ -112,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`) VALUES
-(1, 'tshaukemulumba@yahoo.com', '[]', '$2y$13$p0AW3jLzfH7MjjbixvNv7u0rY7hkd/XKqCmbx8Ic1zpXSbzUNNYpK', 'Salomon'),
+(1, 'tshaukemulumba@yahoo.com', '[\"ROLE_ADMIN\"]', '$2y$13$p0AW3jLzfH7MjjbixvNv7u0rY7hkd/XKqCmbx8Ic1zpXSbzUNNYpK', 'Salomon'),
 (2, 'alexandrejoyce@yahoo.com', '[]', '$2y$13$7wRwMPf7NpPw.9jM9QpjPuPaXO70F/0TUqaM7GonZm7icB1se3gIq', 'Alexander'),
 (3, 'hajjriadh@gmail.com', '[]', '$2y$13$r167FJbBVLy7xqqJ41cRq.xYXY4WxIVG2CQIaqFue0JBtNG9xk25K', 'Hajji'),
 (4, 'contact@idia-tech.com', '[]', '$2y$13$PP1mZrFlPIrrkHtz7cB46uqIf85ujoJAebrZTznbxJlSL7aXIyeTC', 'Mounir');
@@ -120,6 +147,13 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`) VALUES
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `inscription`
+--
+ALTER TABLE `inscription`
+  ADD CONSTRAINT `FK_5E90F6D6A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FK_5E90F6D6FD02F13` FOREIGN KEY (`evenement_id`) REFERENCES `evenement` (`id`);
 
 --
 -- Contraintes pour la table `reset_password_request`
