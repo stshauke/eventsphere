@@ -26,11 +26,20 @@
            %}active{% endif %}">Evenement<br></a></li>
         {% endif %}
         {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-    <li><a href="{{ path('app_users_list') }}">Liste des inscrits</a></li>
-{% endif %}
- {% if app.user and 'ROLE_ADMIN' not in app.user.roles %}
-    <li><a href="{{ path('app_inscription_new') }}">S'inscrire dans un évènement</a></li>
-{% endif %}
+              <li><a href="{{ path('app_users_list') }}" class="{% if app.request.attributes.get('_route') == 'app_users_list'%}active{% endif %}">
+              Liste des utilisateurs</a></li>
+          {% endif %}
+
+          {% if app.user and 'ROLE_ADMIN' not in app.user.roles %}
+              <li><a href="{{ path('app_inscription_my') }}" class="{% if app.request.attributes.get('_route') == 'app_inscription_my'%}active{% endif %}">
+              Mes inscriptions</a></li>
+          {% endif %}
+
+
+
+          {% if app.user and 'ROLE_ADMIN' not in app.user.roles %}
+              <li><a href="{{ path('app_inscription_new') }}">S'inscrire dans un évènement</a></li>
+          {% endif %}
 
           <li><a href="#venue">Lieu</a></li>
           

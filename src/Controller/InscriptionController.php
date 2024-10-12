@@ -26,6 +26,25 @@ final class InscriptionController extends AbstractController
 
     // Exemple dans votre méthode new ou edit dans InscriptionController
 
+#[Route('/mesInscriptions', name: 'app_inscription_my')]
+public function myInscription(InscriptionRepository $inscriptionRepository): Response
+{
+
+//Récupérer l'utilisateur actuellement connecté
+$user=$this->getUser();
+//Récupérer les inscriptions de l'utilisateur
+$userInscriptions=$inscriptionRepository->findBy(['user'=>$user]);
+//Appeler la vue
+
+return $this->render('inscription/my_inscriptions.html.twig', [
+    'inscriptions' => $userInscriptions,
+]);
+
+}
+
+
+
+
 // Dans InscriptionController.php
 #[Route('/inscription/new', name: 'app_inscription_new')]
 public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, EvenementRepository $evenementRepository): Response

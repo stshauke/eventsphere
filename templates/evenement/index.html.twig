@@ -19,9 +19,11 @@
             <div class="card-header">
                         <div class="row justify-content-between">
                             <div class="col-sm-auto">
+                             {% if is_granted('ROLE_ADMIN')%}
                                 <a class="btn btn-outline-primary" href="{{ path('app_evenement_new') }}">
                                     <i class="bi bi-plus"  style="font-size: 1.5rem;"></i> <!-- Icône pour créer un nouveau module -->
                                 </a>
+                            {% endif %}
                             </div>
                             <div class="col-sm-auto">
                                <form class="d-flex" role="search" id="searchForm" action="{{ path('app_evenement_index') }}" method="get">
@@ -64,16 +66,22 @@
                     {# <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
                     <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a> #}
                     <form method="post" action="{{ path('app_evenement_delete', {'id': evenement.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
-                            <a class="btn btn-outline-info" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">
+                            <div class="d-flex justify-content-center">
+
+                            <a class="btn btn-outline-info mx-1" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">
                                 <i class="bi bi-eye"></i> <!-- Icône pour afficher -->
                             </a>
-                            <a class="btn btn-outline-success" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">
+                            {% if is_granted('ROLE_ADMIN')%}
+                            <a class="btn btn-outline-success mx-1" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">
                                 <i class="bi bi-pencil"></i> <!-- Icône pour éditer -->
                             </a>
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
                             <button class="btn btn-outline-danger" type="submit">
                                 <i class="bi bi-trash"></i> <!-- Icône pour supprimer -->
                             </button>
+                            {% endif %}
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
+                    </div>
+
                         </form>
                 </td>
             </tr>

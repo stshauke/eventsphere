@@ -34,6 +34,12 @@ app_evenement_show:
 app_users_list:
     path: /liste
     controller: App\Controller\UserController::list
+
+# Liste des inscriptions pour un événement (ou pour tous les événements)
+app_inscription_my:
+    path: /mesInscriptions
+    controller: App\Controller\InscriptionController::myInscription
+
 # Liste des inscriptions pour un événement (ou pour tous les événements)
 app_inscription_index:
     path: /inscription
