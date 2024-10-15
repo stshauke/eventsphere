@@ -3,34 +3,44 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
 class Evenement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id")]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'evenement', orphanRemoval: true)]
-    private $inscriptions;
-
-    #[ORM\Column(name: "nom_evenement", length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $nomEvenement = null;
 
-    #[ORM\Column(name: "description_evenement", length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $descriptionEvenement = null;
 
-    #[ORM\Column(name: "date_evenement", type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $dateEvenement = null;
 
-    #[ORM\Column(name: "lieu_evenement", length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $lieuEvenement = null;
 
-    #[ORM\Column(name: "nb_max_participants", nullable: true)]
+    #[ORM\Column(type: 'integer')]
     private ?int $nbMaxParticipants = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Inscription::class, orphanRemoval: true)]
+    private Collection $inscriptions;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -42,9 +52,10 @@ class Evenement
         return $this->nomEvenement;
     }
 
-    public function setNomEvenement(?string $nomEvenement): static
+    public function setNomEvenement(string $nomEvenement): self
     {
         $this->nomEvenement = $nomEvenement;
+
         return $this;
     }
 
@@ -53,9 +64,10 @@ class Evenement
         return $this->descriptionEvenement;
     }
 
-    public function setDescriptionEvenement(?string $descriptionEvenement): static
+    public function setDescriptionEvenement(?string $descriptionEvenement): self
     {
         $this->descriptionEvenement = $descriptionEvenement;
+
         return $this;
     }
 
@@ -64,9 +76,10 @@ class Evenement
         return $this->dateEvenement;
     }
 
-    public function setDateEvenement(?\DateTimeInterface $dateEvenement): static
+    public function setDateEvenement(?\DateTimeInterface $dateEvenement): self
     {
         $this->dateEvenement = $dateEvenement;
+
         return $this;
     }
 
@@ -75,9 +88,10 @@ class Evenement
         return $this->lieuEvenement;
     }
 
-    public function setLieuEvenement(?string $lieuEvenement): static
+    public function setLieuEvenement(string $lieuEvenement): self
     {
         $this->lieuEvenement = $lieuEvenement;
+
         return $this;
     }
 
@@ -86,32 +100,47 @@ class Evenement
         return $this->nbMaxParticipants;
     }
 
-    public function setNbMaxParticipants(?int $nbMaxParticipants): static
+    public function setNbMaxParticipants(int $nbMaxParticipants): self
     {
         $this->nbMaxParticipants = $nbMaxParticipants;
+
         return $this;
     }
 
-    // Ajoutez des méthodes pour gérer les inscriptions si nécessaire
-    public function getInscriptions()
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getInscriptions(): Collection
     {
         return $this->inscriptions;
     }
 
-    public function addInscription(Inscription $inscription): static
+    public function addInscription(Inscription $inscription): self
     {
         if (!$this->inscriptions->contains($inscription)) {
-            $this->inscriptions[] = $inscription;
+            $this->inscriptions->add($inscription);
             $inscription->setEvenement($this);
         }
 
         return $this;
     }
 
-    public function removeInscription(Inscription $inscription): static
+    public function removeInscription(Inscription $inscription): self
     {
         if ($this->inscriptions->removeElement($inscription)) {
-            // si l'inscription était associée à cet événement, on la dissocie
+            // Set the owning side to null (unless already changed)
             if ($inscription->getEvenement() === $this) {
                 $inscription->setEvenement(null);
             }
@@ -119,5 +148,12 @@ class Evenement
 
         return $this;
     }
-    
+
+    /**
+     * Get the number of current participants
+     */
+    public function getCurrentParticipants(): int
+    {
+        return $this->inscriptions->count();
+    }
 }

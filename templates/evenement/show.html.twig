@@ -1,73 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}evenement index{% endblock %}
- 
+{% block title %}Afficher l'événement{% endblock %}
+
 {% block body %}
- 
- <section id="hero" class="hero section dark-background">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            
-        </div>
-        <!-- Spinner End -->
-
-
-
+<section id="hero" class="hero section dark-background" style="background-color: #f8f9fa;">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <!-- Vous pouvez ajouter un contenu de spinner ici si nécessaire -->
+    </div>
+    <!-- Spinner End -->
 
     <div class="container">
-    
-        <h2 class="text-center mt-5 mb-1"> Afficher un événement </h2>
-	 
+        <h2 class="text-center mt-3 mb-4">Afficher un événement</h2> <!-- Remonté le titre -->
+
         <div class="card">
             <div class="card-header">
-                <div class="text-center">
-                </div>
+                <div class="text-center"></div>
             </div>
-            <div class="card-body">                       
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-               <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom_evenement</th>
-                 <td>{{ evenement.nomEvenement}}</td>
-            </tr>
-            <tr>
-                <th>Description_evenement</th>
-                <td>{{ evenement.descriptionEvenement}}</td>
-            </tr>
-            <tr>
-                <th>Date_evenement</th>
-                <td>{{ evenement.dateEvenement ? evenement.dateEvenement|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Lieu_evenement</th>
-                <td>{{ evenement.lieuEvenement }}</td>
-            </tr>
-            <tr>
-                <th>Nb_max_participants</th>
-                <td>{{ evenement.nbMaxParticipants }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Nom de l'événement</th>
+                            <td>{{ evenement.nomEvenement }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description de l'événement</th>
+                            <td>{{ evenement.descriptionEvenement }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de l'événement</th>
+                            <td>{{ evenement.dateEvenement ? evenement.dateEvenement|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu de l'événement</th>
+                            <td>{{ evenement.lieuEvenement }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de Participants</th>
+                            <td>{{ evenement.getCurrentParticipants() }}/{{ evenement.nbMaxParticipants }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            </div>
-       
-       
-<div class="card-footer">
-              <div class="text-center"> 
+            <div class="card-footer">
+                <div class="text-center">
                     <a href="{{ path('app_evenement_index') }}" class="btn btn-secondary me-2">Retour à la liste</a>
-                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ path('app_evenement_delete', {'id': evenement.id}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-primary">Modifier</a>
+                    <form action="{{ path('app_evenement_delete', {'id': evenement.id}) }}" method="post" style="display: inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                    </form>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
-
-      
-
-    </section><!-- /Hero Section -->
+</section><!-- /Hero Section -->
 {% endblock %}
-

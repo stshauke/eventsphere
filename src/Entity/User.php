@@ -20,25 +20,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'user', orphanRemoval: true)]
-    private $inscriptions;
-    
-   
-   
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 180)]
+    private ?string $nom = null;
+
+    #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeInterface $dateInscription = null;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 0])]
+    private ?int $nbEvenementsInscrits = 0;
+
+    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $inscriptions;
+
+    public function __construct()
+    {
+        $this->inscriptions = new ArrayCollection();
+        $this->dateInscription = new \DateTime(); // Ajoute la date actuelle par défaut lors de la création d'un utilisateur
+    }
 
     public function getId(): ?int
     {
@@ -57,33 +64,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->email; // Retourne un identifiant unique pour l'utilisateur, généralement l'email
     }
 
-    /**
-     * @see UserInterface
-     *
-     * @return list<string>
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -91,9 +84,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -106,24 +96,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    #[ORM\Column(length: 180)]
-    private ?string $nom = null;
-
-    /**
-     * @var Collection<int, Inscription>
-     */
-    #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'user')]
-    private Collection $id_user;
-
-    public function __construct()
-    {
-        $this->id_user = new ArrayCollection();
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
     }
+
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
@@ -131,48 +108,58 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials(): void
+    public function getDateInscription(): ?\DateTimeInterface
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        return $this->dateInscription;
     }
 
-    /**
-     * @return Collection<int, Inscription>
-     */
-    public function getIdUser(): Collection
+    public function setDateInscription(\DateTimeInterface $dateInscription): static
     {
-        return $this->id_user;
+        $this->dateInscription = $dateInscription;
+
+        return $this;
     }
 
-    public function addIdUser(Inscription $idUser): static
+    public function getNbEvenementsInscrits(): ?int
     {
-        if (!$this->id_user->contains($idUser)) {
-            $this->id_user->add($idUser);
-            $idUser->setUser($this);
+        return $this->nbEvenementsInscrits;
+    }
+
+    public function setNbEvenementsInscrits(int $nbEvenementsInscrits): static
+    {
+        $this->nbEvenementsInscrits = $nbEvenementsInscrits;
+
+        return $this;
+    }
+
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeIdUser(Inscription $idUser): static
+    public function removeInscription(Inscription $inscription): static
     {
-        if ($this->id_user->removeElement($idUser)) {
-            // set the owning side to null (unless already changed)
-            if ($idUser->getUser() === $this) {
-                $idUser->setUser(null);
+        if ($this->inscriptions->removeElement($inscription)) {
+            if ($inscription->getUser() === $this) {
+                $inscription->setUser(null);
             }
         }
 
         return $this;
     }
-    // Ajoutez la méthode pour obtenir le nom complet
-    public function getFullName(): string
+
+    public function eraseCredentials(): void
     {
-        return $this->nom; // Si vous n'avez qu'un seul champ pour le nom
+        // Si tu stockes des données temporaires sensibles, nettoie-les ici
     }
 }

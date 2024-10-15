@@ -1,73 +1,112 @@
+{% include "_partials/_header.html.twig" %}
 
-  {% include "_partials/_header.html.twig" %}
 
-{% block title %}{% endblock %}
 
 {% block body %}
+<section class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #f4f5f7; position: relative;">
+    <!-- Logo in the top left corner -->
+    <div style="position: absolute; top: 20px; left: 20px;">
+        <a href="/">
+            <img src="/assets_template/img/logo1.png" alt="Logo" style="height: 120px;">
+        </a>
+    </div>
 
-<section id="hero" class="hero section dark-background">
-        <!-- Spinner Start -->
-    
-        <!-- Spinner End -->
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <!-- Form on the right with logo above -->
+            <div class="col-lg-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
 
+                        <h3 class="mb-4 text-center" style="font-family: var(--heading-font); color: var(--heading-color); font-weight: bold;">
+                            Créer un compte
+                        </h3>
 
+                        {{ form_start(registrationForm) }}
 
-
-  
-<div class="container mt-5">
-    <!-- Section: Design Block -->
-    <section class="">
-        <!-- Jumbotron -->
-        
-        <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
-          <div class=">text-center text-lg-center"> <h2 style="color:black">Veuillez vous s'inscrire</h2></div>
-            <div class="container ">
-                <div class="row gx-lg-5 align-items-center">
-  <div class="col-lg-6">
-    <img src="/assets_template/img/evenement-professionnel.jpg" alt="" class="img-fluid" style="max-width: 50%; height: auto;">
-</div>
-
-
-    <div class="col-lg-6 mb-0 mb-lg-0">
-                        <div class="card h-100">
-                            <div class="card-body  px-md-5">
-                                {{ form_start(registrationForm) }}
-                                <!-- name input -->
-                                <div class="form-outline mb-4">
-                                    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-
-                                <!-- Password input -->
-                                <div class="form-outline mb-4">
-                                    {{ form_row(registrationForm.plainPassword, {
-                                        label: 'Mot de passe',
-                                        'attr': {'class': 'form-control'}
-                                    }) }}
-                                </div>
-
-                                <!-- Agree Terms input -->
-                                <div class="form-outline mb-4">
-                                    {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-                                </div>
-
-                                <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-4">
-                                    S'inscrire
-                                </button>
-
-                                {{ form_end(registrationForm) }}
-                            </div>
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Nom complet'}}) }}
                         </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            {{ form_row(registrationForm.email, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Adresse email'}}) }}
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            {{ form_row(registrationForm.plainPassword, {
+                                'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Mot de passe'}
+                            }) }}
+                        </div>
+
+                        <!-- Agree terms -->
+                        <div class="form-check mb-4">
+                            {{ form_row(registrationForm.agreeTerms, {'label': 'Accepter les conditions', 'attr': {'class': 'form-check-input'}}) }}
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #007bff; border: none; font-family: var(--heading-font);">
+                            Inscription
+                        </button>
+
+                        {{ form_end(registrationForm) }}
+
+                        <!-- Already have an account -->
+                        <div class="text-center mt-3">
+                            <p>Déjà un compte ? <a href="{{ path('app_login') }}" class="link-primary">Se connecter</a></p>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Jumbotron -->
-    </section>
-    <!-- Section: Design Block -->
-</div>
+    </div>
+</section>
+
+<style>
+    /* Styling the form */
+    .vh-100 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Logo styling with increased size */
+    .logo img {
+        height: 120px; /* Increased size */
+    }
+
+    /* Form field custom styles */
+    .form-control {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: none;
+    }
+
+    /* Submit button styling */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 0.75rem;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Styling the header */
+    h3 {
+        font-family: var(--heading-font);
+        color: var(--heading-color);
+        font-weight: bold;
+    }
+</style>
+
 {% endblock %}

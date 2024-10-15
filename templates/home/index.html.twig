@@ -1,939 +1,167 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Événements et Conférences{% endblock %}
 
 {% block body %}
-
-
-  
-  <main class="main">
+<main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets_template/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
-
-      <div class="container d-flex flex-column align-items-center text-center mt-auto">
-        <h2 data-aos="fade-up" data-aos-delay="100" class="">LA CONFÉRENCE ANNUELLE<br><span>MARKETING</span></h2>
-        <p data-aos="fade-up" data-aos-delay="200">10-12 Décembre, Centre de Conférence du Centre-ville, New York</p>
-        <div data-aos="fade-up" data-aos-delay="300" class="">
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn mt-3"></a>
+    <section id="hero" class="hero section dark-background" style="position: relative;">
+        <!-- Remettre l'image précédente -->
+        <img src="assets_template/img/hero-bg.jpg" alt="Image de fond" data-aos="fade-in" class="w-100" style="height: 100vh; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <div class="container d-flex flex-column align-items-center justify-content-center text-center" style="height: 100vh;">
+            <h2 data-aos="fade-up" data-aos-delay="100" class="text-white" style="font-size: 3.5rem; font-weight: bold; letter-spacing: 2px;">
+                EVENTSPHERE
+            </h2>
         </div>
-      </div>
-
-      <div class="about-info mt-auto position-relative">
-
-        <div class="container position-relative" data-aos="fade-up">
-          <div class="row">
-            <div class="col-lg-6">
-              <h2>À Propos de l'Événement</h2>
-              <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
-                accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
-                est ut optio sequi unde.</p>
-            </div>
-            <div class="col-lg-3">
-              <h3>Où</h3>
-              <p>Centre de Conférence du Centre-ville, New York</p>
-            </div>
-            <div class="col-lg-3">
-              <h3>Quand</h3>
-              <p>Lundi à Mercredi<br>10-12 Décembre</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section><!-- /Hero Section -->
 
     <!-- Speakers Section -->
     <section id="speakers" class="speakers section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Intervenants de l'Événement<br></h2>
-
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets_template/img/speakers/speaker-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="speaker-details.html">Walter White</a></h4>
-                  <span>Quas alias incidunt</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="assets_template/img/speakers/speaker-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="speaker-details.html">Hubert Hirthe</a></h4>
-                  <span>Consequuntur odio aut</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <img src="assets_template/img/speakers/speaker-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="speaker-details.html">Amanda Jepson</a></h4>
-                  <span>Fugiat laborum et</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <img src="assets_template/img/speakers/speaker-4.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="speaker-details.html">William Anderson</a></h4>
-                  <span>Debitis iure vero</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Nos Intervenants</h2>
         </div>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member">
+                        <img src="assets_template/img/speakers/speaker-1.jpg" class="img-fluid" alt="Sophie Dupont">
+                        <div class="member-info">
+                            <h4><a href="speaker-details.html">Sophie Dupont</a></h4>
+                            <span>Experte en Marketing Digital</span>
+                        </div>
+                    </div>
+                </div><!-- End Speaker 1 -->
 
-      </div>
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <img src="assets_template/img/speakers/speaker-2.jpg" class="img-fluid" alt="Jean Martin">
+                        <div class="member-info">
+                            <h4><a href="speaker-details.html">Jean Martin</a></h4>
+                            <span>Spécialiste SEO</span>
+                        </div>
+                    </div>
+                </div><!-- End Speaker 2 -->
 
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member">
+                        <img src="assets_template/img/speakers/speaker-3.jpg" class="img-fluid" alt="Marie Dubois">
+                        <div class="member-info">
+                            <h4><a href="speaker-details.html">Marie Dubois</a></h4>
+                            <span>Consultante en stratégie digitale</span>
+                        </div>
+                    </div>
+                </div><!-- End Speaker 3 -->
+
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <img src="assets_template/img/speakers/speaker-4.jpg" class="img-fluid" alt="Luc Bernard">
+                        <div class="member-info">
+                            <h4><a href="speaker-details.html">Luc Bernard</a></h4>
+                            <span>Expert en Data Marketing</span>
+                        </div>
+                    </div>
+                </div><!-- End Speaker 4 -->
+            </div>
+        </div>
     </section><!-- /Speakers Section -->
 
-   <main class="main">
-
-     <!-- Section de programme -->
+    <!-- Schedule Section -->
     <section id="schedule" class="schedule section">
-
-      <!-- Titre de la section -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Programme de l'événement<br></h2>
-        <p>Les nécessités de ceux-ci se concrétisent à partir de quelque chose d'évasif, mais il est certain que cela concerne la capacité de comprendre.</p>
-      </div><!-- Fin Titre de la section -->
-
-      <div class="container">
-
-        <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-          <li class="nav-item">
-            <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Jour 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Jour 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab">Jour 3</a>
-          </li>
-        </ul>
-
-        <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-          <h3 class="sub-heading">Il n'y a aucune prétention que l'on puisse se défaire, et la corruption se manifeste par des événements officiels. Les nécessités de ces événements sont le sujet de l'effort, qui est en jeu.</h3>
-
-          <!-- Programme Jour 1 -->
-          <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>09:30 AM</time></div>
-              <div class="col-md-10">
-                <h4>Inscription</h4>
-                <p>La fuite de la volonté est plus grande que les circonstances, mais cela ne conduit jamais à une grande histoire.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-1-2.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Discours principal <span>Brenden Legros</span></h4>
-                <p>Réaliser une disposition des événements avec précision.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-2-2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et la volonté est juste d'indiquer pour nous. <span>Hubert Hirthe</span></h4>
-                <p>Les plus grands dignitaires ne sont pas ceux qui portent des accusations.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-3-2.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explique et quel est le sujet et pourquoi cela existe. <span>Cole Emmerich</span></h4>
-                <p>La volonté de l'accusation est d'éviter tout ce qui pourrait être rencontré.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-4-2.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui ne peut pas avoir d'excuses pour suivre. <span>Jack Christiansen</span></h4>
-                <p>De la distinction vient la volonté de procéder au bon moment.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Les raisons d'attaquer ne sont pas simplement vagues. <span>Alejandrin Littel</span></h4>
-                <p>Une volonté d'évaluer ce qui doit être fait peut être rencontrée.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui se présente ne sait pas <span>Willow Trantow</span></h4>
-                <p>La volonté et les autres doléances sont ce qui est devant, peu importe les vérités.</p>
-              </div>
-            </div>
-
-          </div><!-- Fin Programme Jour 1 -->
-
-          <!-- Programme Jour 2 -->
-          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-1-2.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Libérer la corruption et expliquer ce qui doit être fait. <span>Brenden Legros</span></h4>
-                <p>Réaliser une disposition des événements avec précision.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-2-2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et la volonté est juste d'indiquer pour nous. <span>Hubert Hirthe</span></h4>
-                <p>Les plus grands dignitaires ne sont pas ceux qui portent des accusations.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-3-2.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explique et quel est le sujet et pourquoi cela existe. <span>Cole Emmerich</span></h4>
-                <p>La volonté de l'accusation est d'éviter tout ce qui pourrait être rencontré.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-4-2.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui ne peut pas avoir d'excuses pour suivre. <span>Jack Christiansen</span></h4>
-                <p>De la distinction vient la volonté de procéder au bon moment.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Les raisons d'attaquer ne sont pas simplement vagues. <span>Alejandrin Littel</span></h4>
-                <p>Une volonté d'évaluer ce qui doit être fait peut être rencontrée.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui se présente ne sait pas <span>Willow Trantow</span></h4>
-                <p>La volonté et les autres doléances sont ce qui est devant, peu importe les vérités.</p>
-              </div>
-            </div>
-
-          </div><!-- Fin Programme Jour 2 -->
-
-          <!-- Programme Jour 3 -->
-          <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-1-2.jpg" alt="Brenden Legros">
-                </div>
-                <h4>Libérer la corruption et expliquer ce qui doit être fait. <span>Brenden Legros</span></h4>
-                <p>Réaliser une disposition des événements avec précision.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-2-2.jpg" alt="Hubert Hirthe">
-                </div>
-                <h4>Et la volonté est juste d'indiquer pour nous. <span>Hubert Hirthe</span></h4>
-                <p>Les plus grands dignitaires ne sont pas ceux qui portent des accusations.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>12:00 AM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-3-2.jpg" alt="Cole Emmerich">
-                </div>
-                <h4>Explique et quel est le sujet et pourquoi cela existe. <span>Cole Emmerich</span></h4>
-                <p>La volonté de l'accusation est d'éviter tout ce qui pourrait être rencontré.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>02:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-4-2.jpg" alt="Jack Christiansen">
-                </div>
-                <h4>Qui ne peut pas avoir d'excuses pour suivre. <span>Jack Christiansen</span></h4>
-                <p>De la distinction vient la volonté de procéder au bon moment.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>03:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-5.jpg" alt="Alejandrin Littel">
-                </div>
-                <h4>Les raisons d'attaquer ne sont pas simplement vagues. <span>Alejandrin Littel</span></h4>
-                <p>Une volonté d'évaluer ce qui doit être fait peut être rencontrée.</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>04:00 PM</time></div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets_template/img/speakers/speaker-6.jpg" alt="Willow Trantow">
-                </div>
-                <h4>Quo qui se présente ne sait pas <span>Willow Trantow</span></h4>
-                <p>La volonté et les autres doléances sont ce qui est devant, peu importe les vérités.</p>
-              </div>
-            </div>
-
-          
-           <main class="main">
-
-  <div class="row schedule-item">
-    <div class="col-md-2"><time>00:00</time></div>
-    <div class="col-md-10">
-      <div class="speaker">
-        <img src="assets_template/img/speakers/speaker-1-2.jpg" alt="Brenden Legros">
-      </div>
-      <h4>Libero corrupti explicabo itaque. <span>Brenden Legros</span></h4>
-      <p>Facere provident incidunt quos voluptas.</p>
-    </div>
-  </div>
-
-  <div class="row schedule-item">
-    <div class="col-md-2"><time>14:00</time></div>
-    <div class="col-md-10">
-      <div class="speaker">
-        <img src="assets_template/img/speakers/speaker-4-2.jpg" alt="Jack Christiansen">
-      </div>
-      <h4>Qui non qui vel amet culpa sequi. <span>Jack Christiansen</span></h4>
-      <p>Nam ex distinctio voluptatem doloremque suscipit iusto.</p>
-    </div>
-  </div>
-
-  <div class="row schedule-item">
-    <div class="col-md-2"><time>15:00</time></div>
-    <div class="col-md-10">
-      <div class="speaker">
-        <img src="assets_template/img/speakers/speaker-5.jpg" alt="Alejandrin Littel">
-      </div>
-      <h4>Quos ratione neque expedita asperiores. <span>Alejandrin Littel</span></h4>
-      <p>Eligendi quo eveniet est nobis et ad temporibus odio quo.</p>
-    </div>
-  </div>
-
-  <div class="row schedule-item">
-    <div class="col-md-2"><time>16:00</time></div>
-    <div class="col-md-10">
-      <div class="speaker">
-        <img src="assets_template/img/speakers/speaker-6.jpg" alt="Willow Trantow">
-      </div>
-      <h4>Quo qui praesentium nesciunt <span>Willow Trantow</span></h4>
-      <p>Voluptatem et alias dolorum est aut sit enim neque veritatis.</p>
-    </div>
-  </div>
-
-</div><!-- End Schdule Day 3 -->
-
-</div>
-
-</div>
-</section><!-- /Schedule Section -->
-
-<!-- Section Lieu -->
-<section id="venue" class="venue section">
-
-  <!-- Titre de la Section -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Lieu de l'événement<br></h2>
-    <p>Les nécessités de son déroulement sont telles que cela pourrait sembler un plaisir à la vue.</p>
-  </div><!-- Fin Titre de la Section -->
-
-  <div class="container-fluid" data-aos="fade-up">
-
-    <div class="row g-0">
-      <div class="col-lg-6 venue-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0" allowfullscreen=""></iframe>
-      </div>
-
-      <div class="col-lg-6 venue-info">
-        <div class="row justify-content-center">
-          <div class="col-11 col-lg-8 position-relative">
-            <h3>Centre de Conférence de Downtown, New York</h3>
-            <p>Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.</p>
-          </div>
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Programme de l'événement</h2>
         </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="container-fluid venue-gallery-container" data-aos="fade-up" data-aos-delay="100">
-    <div class="row g-0">
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-1.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-1.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-2.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-2.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-3.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-3.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-4.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-4.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-5.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-5.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-6.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-6.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-7.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-7.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4">
-        <div class="venue-gallery">
-          <a href="assets_template/img/venue-gallery/venue-gallery-8.jpg" class="glightbox" data-gall="venue-gallery">
-            <img src="assets_template/img/venue-gallery/venue-gallery-8.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</section><!-- /Section Lieu -->
-
-
-    <!-- Hotels Section -->
-    <section id="hotels" class="hotels section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Hotels</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="card h-100">
-              <div class="card-img">
-                <img src="assets_template/img/hotels-1.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="#" class="stretched-link">Non quibusdam blanditiis</a></h3>
-              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-              <p>0.4 Mile from the Venue</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="card h-100">
-              <div class="card-img">
-                <img src="assets_template/img/hotels-2.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="#" class="stretched-link">Aspernatur assumenda</a></h3>
-              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-              <p>0.5 Mile from the Venue</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="card h-100">
-              <div class="card-img">
-                <img src="assets_template/img/hotels-3.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="#" class="stretched-link">Dolores ut ut voluptatibu</a></h3>
-              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-              <p>0.6 Mile from the Venue</p>
-            </div>
-          </div><!-- End Card Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Hotels Section -->
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Gallery</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "centeredSlides": true,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 0
-                },
-                "768": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 20
-                },
-                "1200": {
-                  "slidesPerView": 5,
-                  "spaceBetween": 20
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-1.jpg"><img src="assets_template/img/event-gallery/event-gallery-1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-2.jpg"><img src="assets_template/img/event-gallery/event-gallery-2.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-3.jpg"><img src="assets_template/img/event-gallery/event-gallery-3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-4.jpg"><img src="assets_template/img/event-gallery/event-gallery-4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-5.jpg"><img src="assets_template/img/event-gallery/event-gallery-5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-6.jpg"><img src="assets_template/img/event-gallery/event-gallery-6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-7.jpg"><img src="assets_template/img/event-gallery/event-gallery-7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets_template/img/event-gallery/event-gallery-8.jpg"><img src="assets_template/img/event-gallery/event-gallery-8.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section><!-- /Gallery Section -->
-
-    <!-- Sponsors Section -->
-   <main class="main">
-
-   <section id="sponsors" class="sponsors section light-background">
-
-      <!-- Titre de la section -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Partenaires</h2>
-        <p>Les nécessités de son existence découlent d'une fuite d'une chose, en effet, il s'agit de la capacité de comprendre la réalité</p>
-      </div><!-- Fin du titre de la section -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-0 clients-wrap">
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-1.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-2.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-3.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-4.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-5.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-6.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-7.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-          <div class="col-xl-3 col-md-4 client-logo">
-            <img src="assets_template/img/clients/client-8.png" class="img-fluid" alt="">
-          </div><!-- Fin de l'élément Client -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Section Partenaires -->
-
-
-    <!-- Faq Section -->
-    <section id="faq" class="faq section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Frequently Asked Questions</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row justify-content-center">
-
-          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="faq-container">
-
-              <div class="faq-item faq-active">
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
-                <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-            </div>
-
-          </div><!-- End Faq Column-->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Faq Section -->
-
-    <!-- Buy Tickets Section -->
-    <section id="buy-tickets" class="buy-tickets section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Buy Tickets<br></h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Standard Access</h3>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>150<span> / month</span></h4>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-              <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-              <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+        <div class="container">
+            <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Jour 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Jour 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab">Jour 3</a>
+                </li>
             </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
 
-        <div class="row gy-4 pricing-item featured mt-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Premium Access<br></h3>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>250<span> / month</span></h4>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-              <li><i class="bi bi-check"></i> <strong>Nec feugiat nisl pretium</strong></li>
-              <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
+            <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+                    <h3 class="sub-heading">Jour 1 - Marketing Digital et SEO</h3>
 
-        <div class="row gy-4 pricing-item mt-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Pro Access<br></h3>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>350<span> / month</span></h4>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-              <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-              <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
+                    <div class="row schedule-item">
+                        <div class="col-md-2"><time>09:30</time></div>
+                        <div class="col-md-10">
+                            <h4>Inscription et Café d'accueil</h4>
+                        </div>
+                    </div>
 
-      </div>
-
-    </section><!-- /Buy Tickets Section -->
+                    <div class="row schedule-item">
+                        <div class="col-md-2"><time>10:00</time></div>
+                        <div class="col-md-10">
+                            <h4>Discours d'ouverture <span>Sophie Dupont</span></h4>
+                            <p>Les dernières tendances en marketing digital.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez ici les programmes pour les jours 2 et 3 de manière similaire -->
+            </div>
+        </div>
+    </section><!-- /Schedule Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@example.com</p>
-            </div>
-          </div><!-- End Info Item -->
-
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contactez-nous</h2>
+            <p>Pour plus d'informations sur nos événements, n'hésitez pas à nous contacter.</p>
         </div>
 
-        <div class="row gy-4 mt-1">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div><!-- End Google Maps -->
-
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="bi bi-geo-alt"></i>
+                        <h3>Adresse</h3>
+                        <p>12 Rue des Événements, 75000 Paris, France</p>
+                    </div>
                 </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                <div class="col-lg-3 col-md-6">
+                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-telephone"></i>
+                        <h3>Téléphone</h3>
+                        <p>+33 1 23 45 67 89</p>
+                    </div>
                 </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                <div class="col-lg-3 col-md-6">
+                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+                        <i class="bi bi-envelope"></i>
+                        <h3>Email</h3>
+                        <p>contact@evenements.fr</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+            <div class="row gy-4 mt-1">
+                <div class="col-lg-6">
+                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Votre Nom" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" placeholder="Votre Email" required="">
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary">Envoyer Message</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
+            </div>
         </div>
-
-      </div>
-
     </section><!-- /Contact Section -->
 
-  </main>
-
-  
-  {% endblock %}
+</main>
+{% endblock %}

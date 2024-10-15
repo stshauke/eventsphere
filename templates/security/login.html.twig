@@ -1,113 +1,79 @@
+{% include "_partials/_header.html.twig" %}
 
-  {% include "_partials/_header.html.twig" %}
 
-{% block title %}
-{% endblock %}
 
 {% block body %}
-  
-	<section id="hero" class="hero section dark-background">
-        <!-- Spinner Start -->
-        
-        <!-- Spinner End -->
+<section class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #f4f5f7; position: relative;">
+    <!-- Logo in the top left corner -->
+    <div style="position: absolute; top: 20px; left: 20px;">
+        <a href="/">
+            <img src="{{ asset('assets_template/img/logo1.png') }}" alt="Logo" style="height: 120px;">
+        </a>
+    </div>
 
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <!-- Form on the right with logo above -->
+            <div class="col-lg-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
 
+                        <h3 class="mb-4 text-center" style="font-family: var(--heading-font); color: var(--heading-color); font-weight: bold;">
+                            Veuillez vous connecter
+                        </h3>
 
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ 'Vos identifiants sont incorrects.'|trans }}</div>
+                            {% endif %}
 
-    <div class="container mt-5">
-		<!-- Section: Design Block -->
-		<section
-			class="">
-			<!-- Jumbotron -->
-			<div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
-				<div class="container">
-					<div class="row gx-lg-5 align-items-center">
-						<div class="col-lg-6 mb-5 mb-lg-0">
-							<p class="my-5 display-3 fw-bold ls-tight" style="color: black;">
-								Eventsphere
-								<br/>
-								<span class="text-primary" style="font-size: 0.8em;">Bâtissons ensemble les opportunités de demain</span>
-							</p>
-							<p style="color: hsl(217, 10%, 50.8%)">
-								Que vous êtes à la recherche des conférences, séminaires, ateliers , Eventsphere est là pour vous accompagner dans votre parcours professionnel. Nous nous engageons à fournir un service de qualité et à créer des partenariats solides pour répondre aux besoins de tous nos clients.</p>
-						</div>
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    Vous êtes connecté en tant que {{ app.user.userIdentifier }},
+                                    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                                </div>
+                            {% endif %}
 
-						<div class="col-lg-6 mb-5 mb-lg-0">
-							<div class="card">
-								<div class="card-body py-5 px-md-5">
-									<form method="post">
-										{% if error %}
-											{# <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
-											<div class="alert alert-danger">{{ 'Vos identifiants sont incorrects.'|trans }}</div>
-										{% endif %}
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <label for="inputEmail">E-mail</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            </div>
 
-										{% if app.user %}
-											<div class="mb-3">
-												You are logged in as
-												{{ app.user.userIdentifier }},
-												<a href="{{ path('app_logout') }}">Se déconnecter</a>
-											</div>
-										{% endif %}
-										<!-- 2 column grid layout with text inputs for the first and last names -->
-										<div class="row">
-											<h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
-										</div>
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <label for="inputPassword">Mot de passe</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            </div>
 
-										<!-- Email input -->
-										<div class="form-outline mb-4">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <a href="{{ path('app_register') }}">Vous n'avez pas de compte ? Inscrivez-vous</a>
+                                </div>
+                            </div>
 
-											<label for="inputEmail">E-mail</label>
-											<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-start">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
+                                        <label class="form-check-label" for="form2Example31">
+                                            Se rappeler de moi
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4">
+                                Se connecter
+                            </button>
+                        </form>
 
-										</div>
-
-										<!-- Password input -->
-										<div class="form-outline mb-4">
-											<label for="inputPassword">Mot de passe</label>
-											<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-										</div>
-
-										
-										<div class="row mb-4">								
-											<div
-												class="col">
-												<!-- Simple link -->
-												<a href="{{ path('app_register') }}">Vous êtes un utilisateur S'inscrire  ?</a>
-											</div>											
-											
-										</div>
-									<div class="row mb-4">
-											<div
-												class="col d-flex justify-content-start">
-												<!-- Checkbox -->
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
-													<label class="form-check-label" for="form2Example31">
-														Se rappeler de moi
-													</label>
-												</div>
-											</div>
-										</div>
-
-										<!-- Submit button -->
-										<button type="submit" class="btn btn-primary btn-block mb-4">
-											Se connecter
-										</button>
-										
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Jumbotron -->
-		</section>
-		<!-- Section: Design Block -->
-	</div>
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

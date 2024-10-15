@@ -1,109 +1,113 @@
 {% extends 'base.html.twig' %}
- 
-{% block title %}evenement index{% endblock %}
- 
+
+{% block title %}Nos Événements{% endblock %}
+
 {% block body %}
-   <section id="hero" class="hero section dark-background">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            
-        </div>
-        <!-- Spinner End -->
-
-
-
-
+<section id="hero" class="hero section dark-background">
     <div class="container">
-        <h2 class="text-center mt-5 mb-3">Liste des evenements</h2>
-        <div class="card">
-            <div class="card-header">
-                        <div class="row justify-content-between">
-                            <div class="col-sm-auto">
-                             {% if is_granted('ROLE_ADMIN')%}
-                                <a class="btn btn-outline-primary" href="{{ path('app_evenement_new') }}">
-                                    <i class="bi bi-plus"  style="font-size: 1.5rem;"></i> <!-- Icône pour créer un nouveau module -->
-                                </a>
-                            {% endif %}
-                            </div>
-                            <div class="col-sm-auto">
-                               <form class="d-flex" role="search" id="searchForm" action="{{ path('app_evenement_index') }}" method="get">
-    <div class="form-group">
-        <input type="text" class="form-control me-2" placeholder="Recherche..." name="search" id="searchInput" value="{{ app.request.query.get('search') }}">
-    </div>
-    <button type="submit" class="btn btn-outline-success ml-2">
-        <i class="bi bi-search"></i>
-    </button>
-</form>
+        <h2 class="text-center mt-5 mb-4 text-white">Nos Événements</h2>
 
+        <div class="row">
+            {% for evenement in pagination %}
+                <div class="col-md-3 mb-4"> <!-- 4 cartes par ligne -->
+                    <div class="card h-100 shadow-sm border-0">
+                        <!-- Titre de l'événement au-dessus de l'image -->
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ evenement.nomEvenement }}</h5>
+                        </div>
+                        <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="stretched-link">
+                            <div class="card-img-wrapper" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa;">
+                                {% if evenement.image %}
+                                    <img src="{{ asset('uploads/' ~ evenement.image) }}" class="card-img-top" alt="{{ evenement.nomEvenement }}" style="object-fit: contain; max-width: 100%; max-height: 100%;">
+                                {% else %}
+                                    <img src="{{ asset('images/default-event.jpg') }}" class="card-img-top" alt="Événement par défaut" style="object-fit: contain; max-width: 100%; max-height: 100%;">
+                                {% endif %}
                             </div>
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text text-center">{{ evenement.descriptionEvenement|striptags|slice(0, 100) ~ '...' }}</p>
+                            <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="btn btn-primary mt-auto">En savoir plus</a>
                         </div>
                     </div>
-            <div class="card-body">
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p class="text-center">Aucun événement trouvé.</p>
+                </div>
+            {% endfor %}
+        </div>
 
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom évènement</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Lieu</th>
-                <th>nb_max_participants</th>
-               
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in pagination %}
-            <tr>
-                <td>{{ evenement.id }}</td>
-                <td>{{ evenement.nomEvenement}}</td>
-                <td>{{ evenement.descriptionEvenement}}</td>
-                <td>{{ evenement.dateEvenement ? evenement.dateEvenement|date('Y-m-d') : '' }}
-                <td>{{ evenement.lieuEvenement }}</td> 
-                 <td>{{ evenement.nbMaxParticipants }}</td>       
-                <td>
-                    {# <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a> #}
-                    <form method="post" action="{{ path('app_evenement_delete', {'id': evenement.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
-                            <div class="d-flex justify-content-center">
-
-                            <a class="btn btn-outline-info mx-1" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">
-                                <i class="bi bi-eye"></i> <!-- Icône pour afficher -->
-                            </a>
-                            {% if is_granted('ROLE_ADMIN')%}
-                            <a class="btn btn-outline-success mx-1" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">
-                                <i class="bi bi-pencil"></i> <!-- Icône pour éditer -->
-                            </a>
-                            <button class="btn btn-outline-danger" type="submit">
-                                <i class="bi bi-trash"></i> <!-- Icône pour supprimer -->
-                            </button>
-                            {% endif %}
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
-                    </div>
-
-                        </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="d-flex justify-content-center">
-                        {# Affichage de la pagination générée par knp_paginator #}
-                        {{ knp_pagination_render(pagination,'pagination.html.twig') }}
-                    </div>
-            </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(pagination) }} <!-- Rendu de la pagination -->
         </div>
     </div>
-  </div>
-  </div>
+</section>
 
-      
+<style>
+    /* Styles pour les cartes */
+    .card {
+        border-radius: 0.75rem; /* Bordures arrondies */
+        transition: transform 0.3s, box-shadow 0.3s; /* Effet de zoom et ombre au survol */
+        display: flex;
+        flex-direction: column;
+    }
 
-    </section><!-- /Hero Section -->
+    .card:hover {
+        transform: scale(1.03); /* Zoom lors du survol */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée */
+    }
+
+    .card-img-wrapper {
+        border-radius: 0.75rem 0.75rem 0 0; /* Bordures arrondies pour l'image */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        background-color: #f8f9fa; /* Fond clair pour les logos */
+    }
+
+    .card-img-top {
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    /* Assurez-vous que la pagination n'est pas chevauchante */
+    .pagination {
+        margin-top: 20px; /* Espace au-dessus de la pagination */
+    }
+
+    /* Ajustement pour la hauteur des cartes */
+    .card {
+        height: 100%;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    /* Réglages du texte */
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+        color: #6c757d;
+        text-align: center;
+    }
+
+    /* Bouton */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 10px 20px;
+        font-size: 0.875rem;
+    }
+</style>
 {% endblock %}
